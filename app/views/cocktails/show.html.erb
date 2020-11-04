@@ -2,10 +2,20 @@
 
   <h1><%= @cocktail.name %></h1>
   <%= link_to "Back to all cocktails", root_path %>
-
-  <%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
+<!-- -->
 
   <div class="row">
+<% @cocktail.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
+
+        <div class="col-xs-6 col-xs-offset-3">
+      <% if @cocktail.photos.size != 0 %>
+        <% picture_url = cl_image_path @cocktail.photos[0].path %>
+      <% else %>
+        <% picture_url = image_path('https://images-na.ssl-images-amazon.com/images/I/81EYbpvXJYL._AC_SX522_.jpg') %>
+      <% end %>
+<!--  -->
     <div class="col-sm-12 col-md-6">
       <h3>Recipe</h3>
       <table class="table table-bordered">
